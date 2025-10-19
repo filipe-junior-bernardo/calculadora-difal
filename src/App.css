@@ -1,0 +1,104 @@
+body {
+  background-color: #521132c1;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 2rem;
+  padding: 0;
+}
+
+.container {
+  max-width: 500px;
+  margin: 3rem auto;
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #521131;
+  margin-bottom: 2rem;
+}
+
+label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #521131;
+}
+
+select,
+input {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+button {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #521131;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #1a252f;
+}
+
+.resultado {
+  margin-top: 2rem;
+  background-color: #ecf0f1;
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid #bdc3c7;
+}
+
+.resultado p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  color: #2c3e50;
+}
+
+.resultado em {
+  font-size: 0.875rem;
+  color: #7f8c8d;
+}
+.sauter {
+  text-align: center;
+  font-style: italic;
+  color: #521131;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.rodape {
+  font-size: 0.7rem;
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 0;
+  font-weight: 600;
+  color: #7f8c8d;
+}
+
+.origem {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background-color: #ecf0f1;
+  border-radius: 6px;
+  border: 1px solid #bdc3c7;
+}
+
+.origem p {
+  margin: 0.25rem 0;
+  font-size: 1rem;
+  color: #2c3e50;
+}
