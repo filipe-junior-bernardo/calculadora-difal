@@ -2,32 +2,32 @@ import { useState } from "react";
 import "./App.css";
 
 const estados = [
-  { uf: "AC", destino: 0.17, tipo: "porFora" },
-  { uf: "AL", destino: 0.18, tipo: "ambos" },
-  { uf: "AM", destino: 0.18, tipo: "porFora" },
-  { uf: "AP", destino: 0.17, tipo: "porFora" },
-  { uf: "BA", destino: 0.18, tipo: "porDentro" },
-  { uf: "CE", destino: 0.18, tipo: "porFora" },
-  { uf: "DF", destino: 0.18, tipo: "porFora" },
+  { uf: "AC", destino: 0.19, tipo: "porFora" },
+  { uf: "AL", destino: 0.19, tipo: "ambos" },
+  { uf: "AM", destino: 0.2, tipo: "porFora" },
+  { uf: "AP", destino: 0.18, tipo: "porFora" },
+  { uf: "BA", destino: 0.205, tipo: "porDentro" },
+  { uf: "CE", destino: 0.2, tipo: "porFora" },
+  { uf: "DF", destino: 0.2, tipo: "porFora" },
   { uf: "ES", destino: 0.17, tipo: "porFora" },
-  { uf: "GO", destino: 0.17, tipo: "porDentro" },
-  { uf: "MA", destino: 0.18, tipo: "ambos" },
+  { uf: "GO", destino: 0.19, tipo: "porDentro" },
+  { uf: "MA", destino: 0.23, tipo: "ambos" },
   { uf: "MG", destino: 0.18, tipo: "porDentro" },
   { uf: "MS", destino: 0.17, tipo: "porDentro" },
   { uf: "MT", destino: 0.17, tipo: "porFora" },
-  { uf: "PA", destino: 0.17, tipo: "porDentro" },
-  { uf: "PB", destino: 0.18, tipo: "porDentro" },
-  { uf: "PE", destino: 0.18, tipo: "porDentro" },
-  { uf: "PI", destino: 0.18, tipo: "porDentro" },
-  { uf: "PR", destino: 0.18, tipo: "porDentro" },
-  { uf: "RJ", destino: 0.18, tipo: "porDentro" },
-  { uf: "RN", destino: 0.18, tipo: "porFora" },
-  { uf: "RO", destino: 0.17, tipo: "porFora" },
-  { uf: "RR", destino: 0.17, tipo: "porFora" },
-  { uf: "RS", destino: 0.18, tipo: "porDentro" },
+  { uf: "PA", destino: 0.19, tipo: "porDentro" },
+  { uf: "PB", destino: 0.2, tipo: "porDentro" },
+  { uf: "PE", destino: 0.205, tipo: "porDentro" },
+  { uf: "PI", destino: 0.225, tipo: "porDentro" },
+  { uf: "PR", destino: 0.195, tipo: "porDentro" },
+  { uf: "RJ", destino: 0.2, tipo: "porDentro" },
+  { uf: "RN", destino: 0.2, tipo: "porFora" },
+  { uf: "RO", destino: 0.195, tipo: "porFora" },
+  { uf: "RR", destino: 0.2, tipo: "porFora" },
+  { uf: "RS", destino: 0.17, tipo: "porDentro" },
   { uf: "SC", destino: 0.17, tipo: "porDentro" },
-  { uf: "SE", destino: 0.18, tipo: "porDentro" },
-  { uf: "TO", destino: 0.18, tipo: "porDentro" },
+  { uf: "SE", destino: 0.19, tipo: "porDentro" },
+  { uf: "TO", destino: 0.2, tipo: "porDentro" },
 ];
 
 const legendaTipo = {
@@ -53,9 +53,15 @@ export default function App() {
     const aliqDestino = estado.destino;
     const valorNum = parseFloat(valor);
 
-    const difalPorFora = (aliqDestino - aliqOrigem) * valorNum;
-    const difalPorDentro =
-      ((aliqDestino - aliqOrigem) / (1 - aliqDestino)) * valorNum;
+    // ICMS interestadual fixo de 4%
+    const icms = valorNum * 0.04;
+
+    // Cálculo por Fora (para estados que usam por fora ou ambos)
+    const difalPorFora = (aliqDestino - 0.04) * valorNum;
+
+    // Cálculo por Dentro (para estados que usam por dentro ou ambos)
+    const baseCalculo = (valorNum - icms) / (1 - aliqDestino);
+    const difalPorDentro = baseCalculo * aliqDestino - icms;
 
     setResultado({
       tipo: estado.tipo,
